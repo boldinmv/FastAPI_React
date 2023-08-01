@@ -3,7 +3,7 @@
 ## Установка зависимостей:
 
 ```bash
-pip install fastapi uvicorn sqlalchemy
+pip install fastapi uvicorn sqlalchemy python-multipart Pillow
 ```
 
 ## Запуск FastAPI:
