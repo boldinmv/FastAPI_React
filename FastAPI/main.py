@@ -5,6 +5,7 @@ from database import SessionLocal, engine, Base
 from routers import customer as CustomerRouter
 from routers import product as ProductRouter
 from routers import order as OrderRouter
+from routers import report as ReportRouter
 
 Base.metadata.create_all(bind=engine)
 app = FastAPI()
@@ -23,6 +24,7 @@ app.add_middleware(
 app.include_router(CustomerRouter.router, prefix="/customer")
 app.include_router(ProductRouter.router, prefix="/product")
 app.include_router(OrderRouter.router, prefix="/order")
+app.include_router(ReportRouter.router, prefix="/report")
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host='0.0.0.0', port=8000, reload=True, workers=1)
