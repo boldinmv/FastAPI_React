@@ -51,6 +51,13 @@ function OrdersPage() {
     });
   }
 
+  const removeProductFromOrder = (index) => {
+    formData.products.splice(index,1);
+    setFormData({
+      ...formData
+    });
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (!formData.customer_id) {
@@ -259,7 +266,11 @@ function OrdersPage() {
                             />
                             </td>
                           <td>{product.total}</td>
-                          <td>X</td>
+                          <td className='text-center'>
+                            <Button variant="danger" onClick={e => removeProductFromOrder(index)}>
+                              Удалить
+                            </Button>
+                          </td>
                         </tr>
                       )
                     }
