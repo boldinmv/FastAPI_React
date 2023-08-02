@@ -41,7 +41,14 @@ def create_order(data: order.Order, db: Session):
 
 def get_order(id: int, db: Session):
     order = db.query(Order).filter(Order.id==id).first()
-    order.products = db.query(OrderProduct).filter(OrderProduct.order_id==id).all()
+    products = db.query(OrderProduct).filter(OrderProduct.order_id==id).all()
+    result_products = []
+    for product in products:
+        product_data = db.query(Product).filter(Product.id==product.product_id).first()
+        product.name = product_data.name
+        result_products.append(product)
+
+    order.products = result_products
     return order
 
 def get_orders(db: Session):
