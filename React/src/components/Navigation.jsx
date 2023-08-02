@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 
 import CustomersPage from '../pages/CustomersPage'
 import ProductsPage from '../pages/ProductsPage'
+import OrdersPage from '../pages/OrdersPage'
 
 function Navigation() {
   return (
@@ -21,6 +22,9 @@ function Navigation() {
                 <LinkContainer to="/products">
                   <Nav.Link>Товары</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to="/orders">
+                  <Nav.Link>Заказы</Nav.Link>
+                </LinkContainer>
               </Nav>
           </Navbar.Collapse>
           <Navbar.Brand href="https://github.com/boldinmv/FastAPI_React" target="_blank">FastAPI + React</Navbar.Brand>
@@ -30,6 +34,7 @@ function Navigation() {
       <Routes>
         <Route path="/" element={<CustomersPage />}/>
         <Route path="/products" element={<ProductsPage />}/>
+        <Route path="/orders" element={<OrdersPage />}/>
       </Routes>
     </>
   )
