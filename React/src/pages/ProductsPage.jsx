@@ -41,6 +41,20 @@ function ProductsPage() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    
+    if (!formData.name) {
+      alert('Введите название товара');
+      return;
+    }
+    if (!formData.price) {
+      alert('Введите цену продажи');
+      return;
+    }
+    if (!formData.price_wholesale) {
+      alert('Введите цену закупки');
+      return;
+    }
+
     if (formData.id) {
       await api.put('/product/'+formData.id, formData);
     } else {

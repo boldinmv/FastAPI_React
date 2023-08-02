@@ -45,6 +45,16 @@ function CustomersPage() {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    
+    if (!formData.name) {
+      alert('Введите имя покупателя');
+      return;
+    }
+    if (!formData.birthday) {
+      alert('Введите дату рождения покупателя');
+      return;
+    }
+
     if (formData.id) {
       await api.put('/customer/'+formData.id, formData);
     } else {
