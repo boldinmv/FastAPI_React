@@ -95,9 +95,15 @@ function ProductsPage() {
 
   const deleteProductForm = async id => {
     if (!id) return;
-    const confirmed = window.confirm('Вы действительно хотите удалить этого покупателя?');
+    const confirmed = window.confirm('Вы действительно хотите удалить этот товар?');
     if (!confirmed) return;
-    await api.delete('/product/'+id);
+
+    const deleteResponse = await api.delete('/product/'+id);
+    if (deleteResponse?.data?.error) {
+      alert(deleteResponse.data.error);
+      return;
+    }
+
     const response = await api.get('/products');
     setProducts(response.data);
   }

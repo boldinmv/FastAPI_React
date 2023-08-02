@@ -122,7 +122,13 @@ function CustomersPage() {
     if (!id) return;
     const confirmed = window.confirm('Вы действительно хотите удалить этого покупателя?');
     if (!confirmed) return;
-    await api.delete('/customer/'+id);
+
+    const deleteResponse = await api.delete('/customer/'+id);
+    if (deleteResponse?.data?.error) {
+      alert(deleteResponse.data.error);
+      return;
+    }
+    
     const response = await api.get('/customers');
     setCustomers(response.data);
   }

@@ -1,4 +1,5 @@
 from models.customer import Customer
+from models.order import Order
 from sqlalchemy.orm import Session
 from dto import customer
 import datetime
@@ -50,6 +51,9 @@ def update(data: customer.Customer, db: Session, id: int):
     return customer
 
 def remove(db: Session, id: int):
+    order = db.query(Order).filter(Order.customer_id==id).first()
+    if (order):
+        return {'error':'Нельзя удалить этого покупателя, т.к. у него есть оформленный заказ. Для удаления этого покупателя сначала удалите все его заказы.'}
     customer = db.query(Customer).filter(Customer.id==id).delete()
     db.commit()
     return customer

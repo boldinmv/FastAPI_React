@@ -105,9 +105,19 @@ function OrdersPage() {
     const customersResponse = await api.get('/customers');
     setCustomers(customersResponse.data)
 
+    if (customersResponse.data.length == 0) {
+      alert('Сначала добавьте хотя бы одного покупателя');
+      return;
+    }
+
     const productsResponse = await api.get('/products');
     setProducts(productsResponse.data)
     if (productsResponse.data[0]) setProduct(productsResponse.data[0]);
+
+    if (productsResponse.data.length == 0) {
+      alert('Сначала добавьте хотя бы однин товар');
+      return;
+    }
 
     setFormData({
       id: '',
