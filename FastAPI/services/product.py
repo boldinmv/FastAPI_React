@@ -21,6 +21,8 @@ def get_products(db: Session):
 def update(data: product.Product, db: Session, id: int):
     product = db.query(Product).filter(Product.id==id).first()
     product.name = data.name
+    product.price = data.price
+    product.price_wholesale = data.price_wholesale
     db.add(product)
     db.commit()
     db.refresh(product)
